@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{login.css}"/>
+    <script th:src="@{/webjars/htmx.org/1.9.12/dist/htmx.min.js}" defer></script>
+</head>
+<body>
+<h1>Login</h1>
+<form action="#" th:action="@{/login}" th:object="${loginForm}" method="post">
+    <p>User Name: <label>
+        <input type="text" th:field="*{username}"/>
+    </label></p>
+    <p>Password: <label>
+        <input type="text" th:field="*{password}"/>
+    </label></p>
+    <p><input type="submit" value="Submit"/></p>
+</form>
+<!-- Error message section -->
+<div th:if="${errorMessage}">
+    <p th:text="${errorMessage}"></p>
+</div>
+</body>
+</html>

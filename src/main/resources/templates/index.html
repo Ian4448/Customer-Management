@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+    <link rel="stylesheet" th:href="@{createAccount.css}"/>
+    <script th:src="@{/webjars/htmx.org/1.9.12/dist/htmx.min.js}" defer></script>
+</head>
+<body>
+<h1>Create Account</h1>
+<form action="#" th:action="@{/create}" th:object="${customer}" method="post">
+    <p>First Name: <label>
+        <input type="text" th:field="*{firstName}"/>
+    </label></p>
+    <p>Last Name: <label>
+        <input type="text" th:field="*{lastName}"/>
+    </label></p>
+    <p>Email: <label>
+        <input type="text" th:field="*{email}"/>
+    </label></p>
+    <p>Username: <label>
+        <input type="text" th:field="*{userName}"/>
+    </label></p>
+    <p>Password: <label>
+        <input type="password" id="password" th:field="*{password}"/>
+    </label></p>
+    <p><label>
+        <input type="checkbox" id="showPassword" onclick="togglePassword()"> Show Password
+    </label></p>
+    <p><input type="submit" value="Submit"/></p>
+</form>
+<!-- Error message section -->
+<div th:if="${errorMessage}" style="color:red;">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<script>
+    function togglePassword() {
+        let passwordField = document.getElementById("password");
+        let showPasswordCheckbox = document.getElementById("showPassword");
+        if (showPasswordCheckbox.checked) {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
+</script>
+</body>
+</html>
